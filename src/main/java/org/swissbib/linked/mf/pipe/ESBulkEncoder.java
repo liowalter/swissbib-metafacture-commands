@@ -113,7 +113,8 @@ public final class ESBulkEncoder extends DefaultStreamPipe<ObjectReceiver<String
     @Override
     public void endEntity() {
         if (node.getChildren().size() == 0) {
-            new JsonToken(VALUE, "", node);
+            JsonToken valueNode = new JsonToken(KEY, "value", node);
+            new JsonToken(VALUE, "", valueNode);
             LOG.debug("Entity {} does not have a child node. Creating one with empty name (preventing key with no value.",
                     node.getName());
         }
